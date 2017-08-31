@@ -1,0 +1,4 @@
+com\guide\entity\User.class
+com\guide\service\IUserService.class
+com\guide\service\impl\UserServiceImpl.class
+com\guide\dao\IUserDao.class

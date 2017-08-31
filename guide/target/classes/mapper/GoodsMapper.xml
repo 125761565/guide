@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.dao.IGoodsDao" >
+  <resultMap id="BaseResultMap" type="com.guide.entity.Goods" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picUrl" property="picurl" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pice" property="pice" jdbcType="DOUBLE" />
+    <result column="discountPice" property="discountpice" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  <insert id="insertSelective" parameterType="com.guide.entity.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="picurl != null" >
+        picUrl,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="pice != null" >
+        pice,
+      </if>
+      <if test="discountpice != null" >
+        discountPice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="pice != null" >
+        #{pice,jdbcType=DOUBLE},
+      </if>
+      <if test="discountpice != null" >
+        #{discountpice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="getGoods" parameterType="Map" resultMap="BaseResultMap" >
+    select * from goods
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picurl != null" >
+        picUrl = #{record.picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pice != null" >
+        pice = #{record.pice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discountpice != null" >
+        discountPice = #{record.discountpice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      picUrl = #{record.picurl,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      pice = #{record.pice,jdbcType=DOUBLE},
+      discountPice = #{record.discountpice,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

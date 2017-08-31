@@ -20,6 +20,6 @@ public class UserTest {
 	@Test
 	public void user() {
 		User user=userDao.getByUserName("zhang");
-		System.out.println(user.getPassworld());
+		System.out.println(user.getPassword());
 	}
 }

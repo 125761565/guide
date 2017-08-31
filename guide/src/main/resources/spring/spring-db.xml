@@ -84,6 +84,27 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="DataSource"></property>
 	</bean>	
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 事务执行方式 REQUIRED：指定当前方法必需在事务环境中运行， 如果当前有事务环境就加入当前正在执行的事务环境， 如果当前没有事务，就新建一个事务。 
+				这是默认值。 -->
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="next*" propagation="REQUIRED" />
+			<tx:method name="import*" propagation="REQUIRED" />
+			<tx:method name="insert*" read-only="false" propagation="REQUIRED" />
+			<!-- 指定当前方法以非事务方式执行操作，如果当前存在事务，就把当前事务挂起，等我以非事务的状态运行完，再继续原来的事务。 查询定义即可 
+				read-only="true" 表示只读 -->
+			<tx:method name="get*" propagation="NOT_SUPPORTED" />
+			<tx:method name="find*" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+	
 	<!-- 定义切面，在 .service 中执行有关的事务操作 -->
 	<aop:config>
 		<aop:pointcut id="serviceOperation"
